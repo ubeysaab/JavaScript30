@@ -27,6 +27,15 @@
       misc styles, nothing to do with CSS variables
     */
 
+    :root{
+      --blur:10px;
+      --spacing:10px;
+      --base:#ffd600;
+    }
+
+
+
+    
     body {
       text-align: center;
       background: #193549;
@@ -35,6 +44,16 @@
       font-weight: 100;
       font-size: 50px;
     }
+
+    img{
+      padding:var(--spacing);
+      background-color:var(--base);
+      filter:blur(var(--blur));
+    }
+    .hl{
+      color: var(--base);
+    }
+
 
     .controls {
       margin-bottom: 50px;
@@ -46,7 +65,25 @@
   </style>
 
   <script>
-    
+
+
+
+        function handle(){
+
+          console.dir(this)
+          let suffix = this.dataset.sizing ||""
+          document.documentElement.style.setProperty(`--${this.name}`,this.value+suffix)
+
+          console.log(`${this.name,  this.value + suffix}`)
+         
+        }
+        // The first refactor did it from solution 1 is instead of listening the all Document  just listening the inputs 
+
+
+        let inputs=document.querySelectorAll(".controls input")
+
+
+        inputs.forEach(item=> item.addEventListener("input",handle))
   </script>
 
 </body>

@@ -46,7 +46,29 @@
   </style>
 
   <script>
-    
+    let blur = document.querySelector("#blur")
+    let spacing = document.querySelector("#spacing")
+    let base = document.querySelector("#base")
+
+
+    console.log(base)
+
+    document.addEventListener("input",(event)=>{
+      // console.log("hello world")
+      // console.log(event.target.value)
+      let img = document.querySelector("img");
+
+      if(event.target.id =="blur"){
+        img.style.filter=`blur(${blur.value}px)`
+        console.log("ilove ")
+      }else {
+        img.style.border=`${spacing.value}px solid ${base.value}`
+
+      }
+
+
+
+    })
   </script>
 
 </body>

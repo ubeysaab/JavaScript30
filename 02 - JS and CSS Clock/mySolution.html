@@ -10,8 +10,8 @@
 
     <div class="clock">
       <div class="clock-face">
-        <div class="hand hour-hand"></div>
-        <div class="hand min-hand"></div>
+        <div class=" hour-hand"></div>
+        <div class=" min-hand"></div>
         <div class="hand second-hand"></div>
       </div>
     </div>
@@ -54,7 +54,9 @@
       position: relative;
       width: 100%;
       height: 100%;
-      transform: translateY(-3px); /* account for the height of the clock hands */
+      border: 1px solid red;
+      transform: translateY(-3px)
+      /* ; account for the height of the clock hands */
     }
 
     .hand {
@@ -63,18 +65,36 @@
       background: black;
       position: absolute;
       top: 50%;
+      transform-origin:100%;
+      transform: rotate(90deg);
+      transition: transform 0.05s cubic-bezier(0, 2.3, 0, 1.74)
     }
 
     .second-hand {
       background-color: red;
       height: 3px;
-      transform: rotate(30deg);
+      /*the default transform origin is 50%  */
+      /* transform: rotate(12deg); */
+    }
+    .hour-hand{
+      background-color: #018DED;
     }
 
   </style>
 
   <script>
+    let hour = document.querySelector(".hour-hand")
+    let minute = document.querySelector(".min-hand")
+    let second = document.querySelector(".second-hand")
 
+    setInterval(() => {
+      let date = new Date()
+      // console.log("im running")
+      // console.log((date.getHours()-12)*30)
+      hour.style.transform=`rotate(${(date.getHours()-12)*30+90}deg`
+      minute.style.transform=`rotate(${(date.getMinutes())*6+90}deg`
+      second.style.transform=`rotate(${(date.getSeconds())*6+90}deg`
+    }, 1);
 
   </script>
 </body>
